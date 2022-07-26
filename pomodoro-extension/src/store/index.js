@@ -1,32 +1,19 @@
 import Vue from "vue";
 import Vuex from "vuex";
-
+import state from "./state";
+import actions from "./actions";
+import mutations from "./mutations";
+import VuexWebExtensions from 'vuex-webextensions';
 Vue.use(Vuex);
-
 export default new Vuex.Store({
-  state: {
-    taskName: "",
-    remainingTime: 0
-  },
-  mutations: {
-    setTaskNameMutation(state, payload) {
-      if(!isNullOrEmpty(payload)) {
-        state = payload;
-      }
-    },
-    setRemainingTimeMutation(state, payload) {
-      if(isValid(payload)) {
-        state.remainingTime = payload;
-      }
-    }
-  },
-  actions: {
-    setTaskName({ commit }, payload) {
-      commit('setTaskNameMutation', payload);
-    },
-    setRemainingTime({ commit}, payload) {
-      commit('setRemainingTimeMutation', payload);
-    }
-  },
-  modules: {},
+  state,
+  actions,
+  mutations,
+  plugins: [
+      VuexWebExtensions({
+          syncActions: false,
+          // loggerLevel: 'debug',
+          persistentStates: ['stateone'],
+      }),
+  ],
 });

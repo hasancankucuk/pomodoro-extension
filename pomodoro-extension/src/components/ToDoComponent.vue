@@ -9,6 +9,7 @@
 <script>
 import router from "../router/index.js";
 import store from "../store/index.js";
+import { mapActions } from "vuex";
 export default {
   data() {
      return { 
@@ -19,11 +20,15 @@ export default {
     }
   },
   name: "ToDoComponent",
+  computed: {
+    ...mapActions(['setVisibility'])
+  },
   methods: {
       saveTask() {
         if(this.task != "") {
             router.push({ path: '/timer', replace: true });
             this.isVisible = false;
+            store.dispatch('setVisibility')
         }
     }
   }
