@@ -1,11 +1,12 @@
 /* MAIN */
 body {
-    background-color: #131212;
+    background-color: #bfd1df;
 }
 
 :root {
     --ratio: 1.0;
 }
+
 /* END OF MAIN */
 /* TODO COMPONENT  */
 .addTask {
@@ -33,22 +34,32 @@ body {
     text-align: center;
     border-radius: 10px;
     border: none;
-    background-color: lightgray;
+    background-color: #6c6c6cad;
 }
 
 .submit {
     border: none;
-    border-radius: 50%;
-    background-color: cornflowerblue;
-    color: white;
-    height: 80px;
-    width: 80px;
+    background-color: transparent;
+    color: cornflowerblue;
+    height: 40px;
+    width: 180px;
     position: absolute;
     left: 41%;
-    top: 70%;
+    top: 67%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
+    font-size: 18px;
+    font-weight: lighter;
 }
+
+h2{
+    text-align: center;
+    position: relative;
+    top: 170px;
+    font-size: 30px;
+    font-weight: lighter;
+}
+
 /* END OF TODO COMPONENT */
 
 /* TIMER COMPONENT */
@@ -58,14 +69,13 @@ body {
     position: relative;
     padding: 5rem;
     top: 75px;
-    border: 7px solid #282828;
+    border: 7px solid #2e3047;
     box-shadow: -4px -4px 10px rgb(143 142 142 / 50%), 
                 inset 4px 4px 10px rgb(20 20 20 / 50%), 
                 inset -4px -4px 10px rgb(111 101 101 / 50%), 
                 4px 4px 10px rgb(51 51 51 / 30%);
     border-radius: 50%;
     margin: 50px auto;
-    /* --ratio: 0.3; */
     clip-path: circle(50%);
 }
 
@@ -76,12 +86,12 @@ body {
     height: 100%;
     top: 0;
     left: 0;
-    background-image: conic-gradient(#282828 0 calc(var(--ratio) * 360deg), red calc(var(--ratio) * 360deg) 360deg);
+    background-image: conic-gradient(#f9f9f9 0 calc(var(--ratio) * 360deg), #ff6962 calc(var(--ratio) * 360deg) 360deg);
     z-index: -2;
     border-radius: 50%;
-  }
+}
 
-  .clock::after {
+.clock::after {
     content: '';
     position: absolute;
     width: 98%;
@@ -92,9 +102,94 @@ body {
     border-radius: 50%;
     background-color: rgb(20 20 20 / 50%);
     z-index: -1;
-  }
+}
 
-  .startAgain {
+
+.outer-clock-face {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border-radius: 100%;
+    background: #2e3047;
+    overflow: hidden;
+    top: -76px;
+    left: -76px;
+}
+
+.outer-clock-face::after {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    transform: rotate(90deg)
+}
+
+.outer-clock-face::before,
+.outer-clock-face::after,
+.outer-clock-face .marking {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 100%;
+    background: #ffabab;
+    z-index: 0;
+    left: 49%;
+}
+
+.outer-clock-face .marking {
+    background: #bdbdcb;
+    width: 3px;
+}
+
+.outer-clock-face .marking.marking-one {
+    -webkit-transform: rotate(30deg);
+    -moz-transform: rotate(30deg);
+    transform: rotate(30deg)
+}
+
+.outer-clock-face .marking.marking-two {
+    -webkit-transform: rotate(60deg);
+    -moz-transform: rotate(60deg);
+    transform: rotate(60deg)
+}
+
+.outer-clock-face .marking.marking-three {
+    -webkit-transform: rotate(120deg);
+    -moz-transform: rotate(120deg);
+    transform: rotate(120deg)
+}
+
+.outer-clock-face .marking.marking-four {
+    -webkit-transform: rotate(150deg);
+    -moz-transform: rotate(150deg);
+    transform: rotate(150deg)
+}
+
+.inner-clock-face {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    background: #2e3047;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    z-index: 1;
+}
+
+.inner-clock-face::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    border-radius: 18px;
+    margin-left: -9px;
+    margin-top: -6px;
+    z-index: 11;
+}
+
+.startAgain {
     position: relative;
     margin-top: 50px;
     left: 180px;
@@ -105,5 +200,24 @@ body {
     border: solid;
     color: white;
     font-size: 17px;
+}
+
+.hand {
+    width: 50%;
+    right: 50%;
+    height: 6px;
+    background: #afcbff;
+    position: absolute;
+    top: 50%;
+    border-radius: 6px;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition-timing-function: cubic-bezier(0.0, 1, 0.58, 1);
+}
+
+.hand.min-hand {
+    height: 3px;
+    z-index: 10;
+    width: 40%;
   }
 /* END OF TIMER COMPONENT */

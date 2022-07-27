@@ -1,6 +1,16 @@
 <template>
     <div v-show="isVisible">
-        <div class="clock"></div>
+        <div class="clock">
+            <div class="outer-clock-face">
+                <div class="marking marking-one"></div>
+                <div class="marking marking-two"></div>
+                <div class="marking marking-three"></div>
+                <div class="marking marking-four"></div>
+                <div class="inner-clock-face">
+                    <div class="hand min-hand"></div>
+                </div>
+            </div>
+        </div>
         <div v-show="isFinished" >
             <button class="startAgain" @click="startAgain()">{{ localizedService.getLocalizedMessage("startAgain") }}</button>
         </div>
@@ -19,29 +29,38 @@ export default {
     },
     data() {
         return {
-            defaultTime: 3 * 60,
-            ratio: 1.0,
+            defaultMinute: (+new Date) + 1000 * (60 * 30 + 0) + 500,
+            ratio: 1,
             localizedService,
             isFinished: false,
-            isVisible: false
+            isVisible: true
         }
     },
     methods: {
         minuteCounter() {
-            if (this.defaultTime == 0) {
+            var msLeft = this.defaultMinute - (new Date);
+            if (msLeft <= 1000) {
                 this.isFinished = true;
             }
 
-            if( this.defaultTime >= 0) {
-                this.defaultTime = this.defaultTime - 1;
+            if (msLeft >= 1000) {
+                const tomiliseconds = (hrs,min,sec) => (hrs*60*60+min*60+sec)*1000;
+                var seconds = 60;
+                seconds -= 1;
+                var time = new Date(msLeft);
                 this.ratio -= 0.01;
+                const minsDegrees = (this.ratio) * (360) + 90;
+                const minsHand = document.querySelector('.min-hand');
+                if(this.ratio >= 0) {
+                    minsHand.style.transform = `rotate(${minsDegrees}deg)`;
+                }
+
                 document.documentElement.style.setProperty('--ratio', this.ratio);
             }
             
-            setTimeout(this.minuteCounter.bind(this), 10);
+            setTimeout(this.minuteCounter.bind(this), time.getUTCMilliseconds() + 1 );
         },
         startAgain() {
-            console.log(router);
             router.push({ path: '', replace: true });
             this.isVisible = false;
             store.dispatch('setVisibility');

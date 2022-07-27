@@ -21,8 +21,7 @@ export default {
     },
     methods: {
         checkVisibility() {
-            return true;
-            // return store.state.isVisible;
+            return store.state.isVisible;
         }
     }
 }
