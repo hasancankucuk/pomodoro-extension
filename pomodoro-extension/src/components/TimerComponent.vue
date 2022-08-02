@@ -29,7 +29,7 @@ export default {
     },
     data() {
         return {
-            defaultMinute: (+new Date) + 1000 * (60 * 30 + 0) + 500,
+            defaultMinute: (+new Date) + 1000 * (60 * 1) + 500,
             ratio: 1,
             localizedService,
             isFinished: false,
@@ -41,6 +41,7 @@ export default {
             var msLeft = this.defaultMinute - (new Date);
             if (msLeft <= 1000) {
                 this.isFinished = true;
+                localStorage.setItem("isTaskFinished", true);
             }
 
             if (msLeft >= 1000) {

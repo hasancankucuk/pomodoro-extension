@@ -1,6 +1,6 @@
 /* MAIN */
 body {
-    background-color: #bfd1df;
+    background-color: #DC1A7B;
 }
 
 :root {
@@ -25,41 +25,90 @@ body {
 
 .taskInput {
     position: absolute;
-    top: 55%;
-    left: 25%;
+    top: 50%;
+    left: 16%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
-    width: 50%;
+    width: 63%;
     height: 40px;
     text-align: center;
     border-radius: 10px;
     border: none;
-    background-color: #6c6c6cad;
+    background-color: white;
+}
+
+.taskInput:focus {
+    border: none;
+    outline: none;
 }
 
 .submit {
     border: none;
-    background-color: transparent;
-    color: cornflowerblue;
+    background-color: #DC1A7B;
+    color: white;
     height: 40px;
-    width: 180px;
+    width: 31%;
     position: absolute;
-    left: 41%;
+    left: 31%;
     top: 67%;
-    -ms-transform: translateY(-50%);
     transform: translateY(-50%);
-    font-size: 18px;
+    font-size: 20px;
     font-weight: lighter;
+    border-radius: 10px;
 }
 
-h2{
+h2 {
     text-align: center;
-    position: relative;
-    top: 170px;
+    margin: 17%;
     font-size: 30px;
-    font-weight: lighter;
+    font-weight: bold;
+    margin-left: 30%;
+    color: white;
 }
 
+.form-background {
+    width: 77%;
+    height: 87%;
+    margin: auto;
+    display: flex;
+    background-color: #eb4f9d;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+}
+
+.timer-icon {
+    position: relative;
+    right: 50px;
+}
+
+.error-panel {
+    width: 400px;
+    height: 156px;
+    position: absolute;
+    background-color: #eeb9b9de;
+    left: 11%;
+    top: 29%;
+    border-radius: 17px;
+}
+
+.error-icon {
+    position: absolute;
+    bottom: 90px;
+    width: 70px;
+    height: 50px;
+    left: 40%;
+}
+
+.error-message {
+    top: 60%;
+    position: absolute;
+    left: 21%;
+    font-size: 21px;
+    font-weight: 300;
+}
 /* END OF TODO COMPONENT */
 
 /* TIMER COMPONENT */
